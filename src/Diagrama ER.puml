@@ -1,0 +1,45 @@
+@startuml
+' Diagrama ER - Proyecto Atletas
+
+' Entidades
+entity "Atleta" as Atleta {
+  * id_atleta : int
+  --
+  nombre : string
+  edad : int
+  disciplina : string
+  departamento : string
+  nacionalidad : string
+}
+
+entity "Pago" as Pago {
+  * id_pago : int
+  --
+  fecha_pago : date
+  monto : float
+  metodo_pago : string
+  id_atleta : int
+}
+
+entity "Sesion" as Sesion {
+  * id_sesion : int
+  --
+  fecha_sesion : date
+  tipo_sesion : string
+  duracion : string
+  id_atleta : int
+}
+
+entity "Disciplina" as Disciplina {
+  * id_disciplina : int
+  --
+  nombre_disciplina : string
+  descripcion : string
+}
+
+' Relaciones
+Atleta ||--o{ Pago : "realiza"
+Atleta ||--o{ Sesion : "participa en"
+Atleta }|--|| Disciplina : "practica"
+
+@enduml
